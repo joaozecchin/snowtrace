@@ -30,6 +30,7 @@ async function getData(){
     let result = transactions.result
     //console.log(result)
     walletData["transactions"] = result
+    //console.log(result)
 
     let balance = await callAPI(urlBook.getBalance)
     walletData["native_balance"] = balance.result/1000000000000000000

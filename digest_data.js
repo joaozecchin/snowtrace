@@ -95,7 +95,7 @@ let protocols ={
         contract : '0xc6e68d77d0f4fa925a1cf2611dab6b10900eaf2b',
         category : 'staking'
     },
-    farmPangolinUsdcUstLP : {
+    farmPangolinUsdcUstFarm : {
         contract : '0x69c1c44e8742b66d892294a7eeb9aac51891b0eb',
         category : 'staking'
     },
@@ -122,6 +122,10 @@ let protocols ={
     wallet : {
         contract : '0x5b9ba1bf76ec0ecf56af70e918c95debb1811fa9',
         category : 'wallet'
+    },
+    farmPangolinUsdcUst : {
+        contract : "0xdeaBb6e80141F5E557EcBDD7e9580F37D7BBc371",
+        category : "lp"
     }
 }
 
@@ -143,7 +147,7 @@ let sentTo = {}
 for(let id in wallet.transactions){
     let trans = wallet.transactions[id]
     let symbol = trans.tokenSymbol
-    let value = parseInt(trans.value) / parseInt(trans.tokenDecimal)
+    let value = parseInt(trans.value) / (10**parseInt(trans.tokenDecimal))
 
     if(!(trans.to in sentTo)){
 
@@ -180,7 +184,7 @@ for(contract in sentTo){
     }
 }
 
-console.log(sentTo)
+//console.log(sentTo)
 let fileArchive  = JSON.stringify(sentTo)
 fs.writeFileSync('avax-balances.json', fileArchive)
 
@@ -197,6 +201,6 @@ for(proto in sentTo){
     }
 }
 
-console.log(tokenBalance)
+//console.log(tokenBalance)
 
 
